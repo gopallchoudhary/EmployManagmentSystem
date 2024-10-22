@@ -1,13 +1,12 @@
 import { useState } from "react";
 import "./App.css";
-import { Login } from "./components";
+import { EmployeeDashboard, Login } from "./components";
 
 function App() {
-
-
   return (
     <>
-      <Login/>
+      {/* <Login /> */}
+      <EmployeeDashboard />
     </>
   );
 }
