@@ -4,7 +4,7 @@ const TaskList = () => {
   return (
     <div
       id="tasklist"
-      className="w-full overflow-x-auto  flex items-center justify-start gap-5 h-[55%]  mt-6 py-10"
+      className="w-full rounded-md overflow-x-auto  flex items-center justify-start gap-5 h-[64%]  mt-6  py-10"
     >
       <div className="w-[300px] flex-shrink-0 h-full bg-red-400 rounded-lg p-4">
         <div className="flex items-center justify-between">
