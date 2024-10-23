@@ -7,6 +7,7 @@ import NewTask from "./TaskList/NewTask";
 import CompleteTask from "./TaskList/CompleteTask";
 import Header from "./Other/Header";
 import TaskListNumbers from "./Other/TaskListNumbers";
+import TaskList from "./TaskList/TaskList";
 
 export {
   Login,
@@ -17,5 +18,6 @@ export {
   AdminDashboard,
   EmployeeDashboard,
   Header,
-  TaskListNumbers
+  TaskListNumbers,
+  TaskList
 };
