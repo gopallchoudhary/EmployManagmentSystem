@@ -8,6 +8,8 @@ import CompleteTask from "./TaskList/CompleteTask";
 import Header from "./Other/Header";
 import TaskListNumbers from "./Other/TaskListNumbers";
 import TaskList from "./TaskList/TaskList";
+import CreateTask from "./Other/CreateTask";
+import AllTask from "./Other/AllTask";
 
 export {
   Login,
@@ -19,5 +21,7 @@ export {
   EmployeeDashboard,
   Header,
   TaskListNumbers,
-  TaskList
+  TaskList,
+  CreateTask,
+  AllTask
 };
