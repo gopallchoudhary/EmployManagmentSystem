@@ -10,9 +10,18 @@ function App() {
   const authData = useContext(AuthContext);
 
   useEffect(() => {
-    setLocalStorage()
-  }, [authData])
-  
+    const loggedInUser = localStorage.getItem("loggedInUser");
+    if (loggedInUser) {
+      const userData = JSON.parse(loggedInUser);
+      setUser(userData.role);
+      setLoggedInUserData(userData.data);
+    }
+  }, []);
+
+  //?<==Local-Storage==>
+  // useEffect(() => {
+  //   setLocalStorage();
+  // }, [authData]);
 
   // useEffect(() => {
   //   if (authData) {
@@ -23,13 +32,20 @@ function App() {
   //   }
   // }, [authData]);
 
+  //. <==Login-Functionality==>
   const handleLogin = (email, password) => {
-    if (
-      authData &&
-      authData.admin.find((e) => e.email === email && e.password === password)
-    ) {
+    //!<==Admin-Data==>
+    const admin = authData.admin.find(
+      (e) => e.email === email && e.password === password
+    );
+
+    if (authData && admin) {
       setUser("admin");
-      localStorage.setItem("loggedInUser", JSON.stringify({ role: "admin" }));
+      setLoggedInUserData(admin);
+      localStorage.setItem(
+        "loggedInUser",
+        JSON.stringify({ role: "admin", data: admin })
+      );
     } else if (authData) {
       //!<==Employee-Data==>
       const employee = authData.employees.find(
@@ -41,19 +57,29 @@ function App() {
         setLoggedInUserData(employee);
         localStorage.setItem(
           "loggedInUser",
-          JSON.stringify({ role: "employee" })
+          JSON.stringify({ role: "employee", data: employee })
         );
-        
       }
     } else {
       alert("Invalid Credentials");
     }
   };
 
+  //. <==Logout-Functionality==>
+  const handleLogout = () => {
+    setUser(null);
+  };
+
   return (
     <>
-      {!user ? <Login handleLogin={handleLogin}/> : ""}
-      {user == "admin" ? <AdminDashboard data={loggedInUserData}/> : (user == "employee" ? <EmployeeDashboard data={loggedInUserData}/> : " ")}
+      {!user ? <Login handleLogin={handleLogin} /> : ""}
+      {user == "admin" ? (
+        <AdminDashboard data={loggedInUserData} logout={handleLogout} />
+      ) : user == "employee" ? (
+        <EmployeeDashboard data={loggedInUserData} logout={handleLogout} />
+      ) : (
+        " "
+      )}
       {/* {user == "employee" ? <EmployeeDashboard data={loggedInUserData}/> : ""} */}
     </>
   );

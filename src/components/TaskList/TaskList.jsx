@@ -11,8 +11,6 @@ const TaskList = ({ data }) => {
       className="w-full rounded-md overflow-x-auto  flex items-center justify-start gap-5 h-[64%]  mt-6  py-10"
     >
       {data.tasks.map((elem) => {
-        console.log(elem);
-
         if (elem.active) {
           return <AcceptTask />;
         }
