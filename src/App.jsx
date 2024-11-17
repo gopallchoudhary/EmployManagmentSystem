@@ -11,17 +11,18 @@ function App() {
 
   useEffect(() => {
     const loggedInUser = localStorage.getItem("loggedInUser");
-    if (loggedInUser) {
-      const userData = JSON.parse(loggedInUser);
+    const userData = JSON.parse(loggedInUser);
+
+    if (userData) {
       setUser(userData.role);
       setLoggedInUserData(userData.data);
     }
   }, []);
 
   //?<==Local-Storage==>
-  // useEffect(() => {
-  //   setLocalStorage();
-  // }, [authData]);
+  useEffect(() => {
+    setLocalStorage();  
+  }, [authData]);
 
   // useEffect(() => {
   //   if (authData) {
@@ -52,6 +53,7 @@ function App() {
         (e) => e.email === email && e.password === password
       );
 
+
       if (employee) {
         setUser("employee");
         setLoggedInUserData(employee);
@@ -66,17 +68,18 @@ function App() {
   };
 
   //. <==Logout-Functionality==>
-  const handleLogout = () => {
-    setUser(null);
-  };
+  // const handleLogout = () => {
+  //   localStorage.setItem("loggedInUser", "")
+  //   window.location.reload()
+  // };
 
   return (
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ""}
       {user == "admin" ? (
-        <AdminDashboard data={loggedInUserData} logout={handleLogout} />
+        <AdminDashboard data={loggedInUserData} /*logout={handleLogout}*/ />
       ) : user == "employee" ? (
-        <EmployeeDashboard data={loggedInUserData} logout={handleLogout} />
+        <EmployeeDashboard data={loggedInUserData} /*logout={handleLogout}*/ />
       ) : (
         " "
       )}
