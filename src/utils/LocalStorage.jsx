@@ -7,7 +7,7 @@ const employees = [
     password: "123",
     tasks: [
       {
-        active: true,
+        active: false,
         newTask: false,
         taskCompleted: false,
         taskFailed: true,
@@ -17,8 +17,8 @@ const employees = [
         date: "2024-11-08",
       },
       {
-        active: true,
-        newTask: false,
+        active: false,
+        newTask: true,
         taskCompleted: true,
         taskFailed: false,
         title: "Weekly Sales Report",
@@ -29,9 +29,9 @@ const employees = [
     ],
     taskCounts: {
       active: 1,
-      failed: 0,
-      newTask: 1,
-      completed: 1,
+      failed: 1,
+      newTask: 0,
+      completed: 0,
     },
   },
   {
@@ -42,7 +42,7 @@ const employees = [
     tasks: [
       {
         active: true,
-        newTask: true,
+        newTask: false,
         taskCompleted: false,
         taskFailed: false,
         title: "Customer Follow-up",
