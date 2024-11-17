@@ -6,7 +6,7 @@ import AllTask from "../Other/AllTask";
 function AdminDashboard({data, logout}) {
   return (
     <div className="h-screen w-full p-7">
-      <Header data={data} logout={logout}/>
+      <Header data={data} /*logout={logout}*/ />
       <CreateTask />
       <AllTask />
     </div>
