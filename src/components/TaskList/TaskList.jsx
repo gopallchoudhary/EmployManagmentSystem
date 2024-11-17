@@ -8,20 +8,21 @@ const TaskList = ({ data }) => {
   return (
     <div
       id="tasklist"
-      className="w-full rounded-md overflow-x-auto  flex items-center justify-start gap-5 h-[64%]  mt-6  py-10"
+      className="w-full rounded-md overflow-x-auto  flex items-center justify-start flex-nowrap gap-5 h-[64%]  mt-6  py-10"
     >
-      {data.tasks.map((elem) => {
+      
+      {data.tasks.map((elem, index) => {
         if (elem.active) {
-          return <AcceptTask />;
+          return <AcceptTask key={index} data={elem} />;
         }
         if (elem.newTask) {
-          return <NewTask />;
+          return <NewTask key={index} data={elem} />;
         }
         if (elem.taskCompleted) {
-          return <CompleteTask />;
+          return <CompleteTask key={index} data={elem} />;
         }
         if (elem.taskFailed) {
-          <FailedTask />;
+          return <FailedTask key={index} data={elem} />;
         }
       })}
 
