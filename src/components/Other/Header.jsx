@@ -1,11 +1,12 @@
 import React from "react";
 
-const logoutUser = () => {
-  localStorage.setItem("loggedInUser", null);
-  window.location.reload();
-};
+const Header = ({ data, changeUser }) => {
+  const logoutUser = () => {
+    localStorage.setItem("loggedInUser", null);
+    changeUser('')
+    //window.location.reload();
+  };
 
-const Header = ({ data }) => {
   return (
     <div className="flex items-start justify-between">
       <h1 className="text-2xl font-medium">

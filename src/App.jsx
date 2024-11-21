@@ -77,9 +77,9 @@ function App() {
     <>
       {!user ? <Login handleLogin={handleLogin} /> : ""}
       {user == "admin" ? (
-        <AdminDashboard data={loggedInUserData} /*logout={handleLogout}*/ />
+        <AdminDashboard data={loggedInUserData} changeUser={setUser} /*logout={handleLogout}*/ />
       ) : user == "employee" ? (
-        <EmployeeDashboard data={loggedInUserData} /*logout={handleLogout}*/ />
+        <EmployeeDashboard data={loggedInUserData} changeUser={setUser} /*logout={handleLogout}*/ />
       ) : (
         " "
       )}

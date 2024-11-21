@@ -1,9 +1,48 @@
-import React from "react";
+import React, { useState } from "react";
 
 const CreateTask = () => {
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
+  const [assignTo, setAssignTo] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [newtask, setNewTask] = useState({});
+
+  //.<==Submit-Handler==> 
+  const sumbitHandler = (e) => {
+    e.preventDefault();
+
+    //! set-Task
+    setNewTask({
+      active: false,
+      category,
+      date,
+      description,
+      newTask: true,
+      taskCompleted: false,
+      taskFailed: false,
+      title,
+
+      
+    });
+
+    const data = JSON.parse(localStorage.getItem("employees"));
+    data.map((elem) => {
+      if (elem.firstName == assignTo) {
+        elem.tasks.push(newtask);
+        console.log(elem.tasks);
+      }
+    });
+
+    localStorage.setItem('employees', JSON.stringify(data))
+  };
+
   return (
     <div>
-      <form className="flex flex-wrap w-full bg-[#1c1c1c] px-4 py-6 mt-4 rounded-md  items-start justify-between">
+      <form
+        onSubmit={(e) => sumbitHandler(e)}
+        className="flex flex-nowrap w-full bg-[#1c1c1c] px-4 py-6 mt-4 rounded-md  items-start justify-between"
+      >
         <div className="w-1/2  ml-8">
           <div className="p-2">
             <h3 className="text-gray-300 text-sm mb-0.5">Task title</h3>
@@ -11,6 +50,8 @@ const CreateTask = () => {
               className="w-4/5 rounded-sm p-2 outline-none  bg-transparent border border-white mt-1"
               type="text"
               placeholder="create task"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
 
@@ -20,6 +61,8 @@ const CreateTask = () => {
               className="w-4/5 rounded-sm p-2 bg-transparent border border-white mt-1"
               placeholder="Enter date"
               type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
             />
           </div>
           <div className="p-2">
@@ -27,7 +70,9 @@ const CreateTask = () => {
             <input
               className="w-4/5 rounded-sm p-2 bg-transparent border border-white mt-1"
               type="text"
-              placeholder="employee name"
+              placeholder="assignTo name"
+              value={assignTo}
+              onChange={(e) => setAssignTo(e.target.value)}
             />
           </div>
           <div className="p-2">
@@ -36,6 +81,8 @@ const CreateTask = () => {
               className="w-4/5 rounded-sm p-2 bg-transparent border border-white mt-1"
               type="text"
               placeholder="design, dev etc"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
             />
           </div>
         </div>
@@ -47,6 +94,8 @@ const CreateTask = () => {
             name=""
             cols="30"
             rows="8"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           ></textarea>{" "}
           <br />
           <button className=" bg-emerald-500 hover:bg-emerald-600 px-4 py-2 font-semibold rounded  w-full mt-3">
