@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 
 const CreateTask = () => {
   const [title, setTitle] = useState("");
@@ -8,7 +9,9 @@ const CreateTask = () => {
   const [description, setDescription] = useState("");
   const [newtask, setNewTask] = useState({});
 
-  //.<==Submit-Handler==> 
+  const [userData, setUserData] = useContext(AuthContext);
+
+  //.<==Submit-Handler==>
   const sumbitHandler = (e) => {
     e.preventDefault();
 
@@ -22,19 +25,20 @@ const CreateTask = () => {
       taskCompleted: false,
       taskFailed: false,
       title,
-
-      
     });
+    
 
-    const data = JSON.parse(localStorage.getItem("employees"));
+    const data = userData.employees;
+
     data.map((elem) => {
       if (elem.firstName == assignTo) {
         elem.tasks.push(newtask);
-        console.log(elem.tasks);
+        elem.taskCounts.newTask = elem.taskCounts.newTask + 1;
       }
+      
     });
-
-    localStorage.setItem('employees', JSON.stringify(data))
+    console.log(data);
+    
   };
 
   return (

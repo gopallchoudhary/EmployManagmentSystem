@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthProvider";
 
 const AllTask = () => {
-  const authData = useContext(AuthContext);
+  const [userData, setUserData] = useContext(AuthContext);
 
   return (
     <div id="allTask" className="bg-[#1c1c1c] mt-5 rounded p-5">
@@ -14,7 +14,7 @@ const AllTask = () => {
         <h2 className="w-1/5">Failed</h2>
       </div>
       <div id="allTask" className="">
-        {authData.employees.map(
+        {userData.employees.map(
           (empl, idx) => (
             (
               <div
